@@ -11,8 +11,32 @@
   <div id="content"></div>
   <button id="getButton">Show all cars</button>
     <ul id="carList">
-
     </ul>
+    <section id="getOne">
+      <div>
+        <h2>Enter the deired items id</h2>
+        <input type="number" id="idContainer" name="idContainer">
+        <button id="getOneButton">Show car</button>
+      </div>
+  </section>
+
+  <section id="Delete">
+    <div>
+      <h2>Enter the deired items id</h2>
+      <input type="number" id="delIdContainer" name="delIdContainer">
+      <button id="delButton">Delete car</button>
+    </div>
+</section>
+
+
+    <section id="addCar">
+      <h2>Add car</h2>
+        <label>vendor:</label>  <input type="text" name="vendorInput" id="vendorInput">
+        <label>model:</label>  <input type="text" name="modelInput" id="modelInput">
+        <label>price:</label>  <input type="number" name="priceInput" id="priceInput">
+        <button id="addButton">Add car</button>
+        
+    </section>
   <script src="bundle.js"></script>
 </body>
 </html>
