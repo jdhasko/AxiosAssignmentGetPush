@@ -7,11 +7,13 @@ import { ICar } from "./ICar";
  var list : HTMLUListElement = <HTMLUListElement> document.getElementById("carList")
  let getOneButton :HTMLButtonElement = <HTMLButtonElement> document.getElementById("getOneButton");
  var delButton :HTMLButtonElement = <HTMLButtonElement> document.getElementById("delButton");
-
+   var addButton :HTMLButtonElement = <HTMLButtonElement> document.getElementById("addButton");
 
  button.addEventListener("click", (e:Event) =>getAll());
  getOneButton.addEventListener("click", (e:Event) => getOne())
  delButton.addEventListener("click", (e:Event) => Delete())
+ addButton.addEventListener("click", (e:Event) => Post())
+
 
 
 function Delete():void
@@ -62,7 +64,7 @@ console.log("Error: "+ error);
       response.data.forEach((car: ICar ) =>
       {
          let newNode : HTMLLIElement = <HTMLLIElement> document.createElement("LI");
-         let newNodeText : string = car.model + " " + car.vendor + " " + car.price;
+         let newNodeText : string = "#"+car.id+"\t"+car.model + "\t" + car.vendor + "\t" + car.price;
          newNode.innerHTML = newNodeText;
          list.appendChild(newNode);
       });
@@ -75,8 +77,25 @@ console.log("Error: "+ error);
 
  function Post()
  {
-    var vendor = (document.getElementById("vendorInput") as HTMLInputElement).value
-    var model =(document.getElementById("modelInput") as HTMLInputElement).value
-    var price = (document.getElementById("priceInput") as HTMLInputElement).value
-    Axios
+    var vendor :string = (document.getElementById("vendorInput") as HTMLInputElement).value
+    var model:string =(document.getElementById("modelInput") as HTMLInputElement).value
+    var price :number = +(document.getElementById("priceInput") as HTMLInputElement).value
+   let newCar = {
+      price = +this.price,vendor = this.vendor,model = this.model;
+   }
+ 
+    axios.post<ICar>(url,
+      {model:model,vendor:vendor,price:price}
+      ).then(function(response : AxiosResponse):void
+    {
+      alert(vendor +"\t"+ model +" successfully added!")
+    })
+    .catch(function(error:AxiosError):void
+    {
+      alert(error);
+      
+    }
+    )
+
+    
  }
